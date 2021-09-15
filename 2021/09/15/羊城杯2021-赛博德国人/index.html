@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>羊城杯2021 赛博德国人 | Fooliam CTF</title><meta name="description"><meta name="generator" content="Fooliam CTF"><meta name="author" content="Fooliam"><meta name="keywords" content="ctf, notes, coding, developer"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Fooliam CTF" title="Fooliam CTF" itemprop="headline">Fooliam CTF</a></h1><p itemprop="description">Lets have fun with ctf!</p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">羊城杯2021 赛博德国人</h1><span class="page-tag-anchor"><a href="/tags/MISC Enigma 流量分析" itemprop="url">#MISC Enigma 流量分析
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><p>羊城杯VPN有点问题没做Web，去水水杂项，这题卡最后一步，复现下。</p>
+<p>题目给了个流量包，扔进wireshark，最显眼的是FTP和FTP-DATA流，从FTP-DATA流中可以提取出两个文件，一个PDF一个TXT文本。</p>
+<p>关于如何提取追踪的TCP（FTP-DATA）流为文件，如下图show data as选择原始数据，然后点另存为即可</p>
+<p><img src="https://i.loli.net/2021/09/15/5LaIyDv2mQ6A4qk.png" alt="G2T4XC@8STF_8_HG_WN_J_B.png"></p>
+<p>得到的TXT内容：</p>
+<pre><code>0911 = 1tle = 1tl = 350 = RZS NAJ =KMN
+nkfgp roqad boprv yrdhy zwamf qsrhb owqvt jzotr ffcjq snpqh kpwzm fprru gufez xsuws aohyw xbreu pifbz kagxj blbha jzixj zrasn zxkay lpaza ejwou itcip dfdgp rbjnv xuqzq qhtya xwwik wyybx kdgrc slrkj pgjay aidwa jeszp pbqat njojg jrplb kkhot joqpg vwecj soabm aupsr fenug ybxmr jloch kmjgc tznxl tnrqx pbeph fwymn gpoor pjkkb plkwb kxzeq quorp ipuvs utyae qyzgp mqnai iysse gzsht tsrmv crrkr opuxj tqshv ypdrw rvnzt cstlj
+</code></pre>
+<p>得到的PDF被加密了，在FTP流中找到奇怪的密码<code>d279186428a75016b17e4df5ea43d080</code>，试了下可以解密</p>
+<p><img src="https://i.loli.net/2021/09/15/cqeVkiHEb1oJvSf.png" alt="_0_H_8R`@74__7GCT_`~_3F.png"></p>
+<p>解密得到一个恩尼格玛的密码表</p>
+<p><img src="https://i.loli.net/2021/09/15/cJVNWzweTuhMbdF.jpg" alt="D26_compressed.jpg"></p>
+<p>那么接下来的任务就是根据表来解密，具体的解密教程贴上网址：</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=RxUWKiVncMg">https://www.youtube.com/watch?v=RxUWKiVncMg</a></p>
+<p><a target="_blank" rel="noopener" href="http://users.telenet.be/d.rijmenants/en/enigmasim.htm">http://users.telenet.be/d.rijmenants/en/enigmasim.htm</a></p>
+<p>最重要的是确定用的是是哪一天的加密表，txt里首五个字符<code>nkfgp</code>里的FGP，只有在10号的Kenngruppen里也出现了，说明要用10号这一行的信息解密。</p>
+<p>最后解密的内容是：</p>
+<pre><code>VIERSIEBENFUENFSIEBENVIERACHTFUENFVIERSIEBENBERTADREISECHSSECHSZWEIDREINEUNDREISECHSDREISIEBENDREIZWEIDREINULLDREIFUENFSECHSSECHSSECHSFUENFDREISIEBENDREIFUENFDREISIEBENDREINEUNDREIFUENFSECHSSECHSDREIEINSDREINULLDREIVIERDREIACHTDREIFUENFDREISIEBENDREIEINSSECHSDREISECHSSECHSDREIVIERSECHSDREISECHSSECHSSECHSZWEIDREISIEBENDREINULLDREIDREISIEBENDORA
+</code></pre>
+<p>内容是德语的数字，还夹杂了字母b（BERTA）和d（DORA）,将其转换成数字和字母：</p>
+<pre><code>475748547b36623936373230356665373537393566313034383537316366346366623730337d
+</code></pre>
+<p>我当时就卡在这了，试着转16进制结果不对，时间差不多了就没做了，后来知道是url编码，淦。给没两个字符加上%拿去解码就好</p>
+<pre><code>%47%57%48%54%7b%36%62%39%36%37%32%30%35%66%65%37%35%37%39%35%66%31%30%34%38%35%37%31%63%66%34%63%66%62%37%30%33%7d
+GWHT&#123;6b967205fe75795f1048571cf4cfb703&#125;
+</code></pre>
+</article><br><br><span class="next-post"><a href="/2021/04/27/Blog &amp;&amp; Reminder for CTF/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
